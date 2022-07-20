@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components"
 import axios from "axios"
+import GlobalContext from "./Global/GlobalContext";
 
 const MainContainer = styled.div`
 height:100vh;
@@ -71,36 +72,17 @@ align-items:center;
 padding:1%;
 `
 function Card() {
-    const [pokemons, setPokemons] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [capturar, setCapturar] = useState([])
     const navigate = useNavigate()
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
 
-    const renderizarPokemon = async () => {
-        const respApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20`)
-        const StoragePokemon = []
-        for (let i = 0; i < respApi.data.results.length; i++) {
-            if (i == 0 && pokemons.length != 0) {
-                return
-            }
-            const respApi2 = await axios.get(respApi.data.results[i].url)
-            StoragePokemon.push(respApi2.data)
-        }
-        await setPokemons(StoragePokemon)
-        await setIsLoading(false)
-    }
+    const { renderizarPokemon, pokemons, addPokemon } = useContext(GlobalContext)
 
     console.log(pokemons)
     useEffect(() => {
         renderizarPokemon()
     }, [])
-
-    const addPokemon = () => {
-        // renderizarP
-    }
 
     const RenderizarCard = pokemons && pokemons.map((pokemon) => {
         return <Container5>
@@ -125,7 +107,7 @@ function Card() {
             </CardPokemon>
             <ContainerBotao>
                 <BotaoDetalhes>Detalhes</BotaoDetalhes>
-                <BotaoCapturar>Capturar</BotaoCapturar>
+                <BotaoCapturar onClick={()=> addPokemon(pokemon.id)}>Capturar</BotaoCapturar>
             </ContainerBotao>
         </Container5>
     })
