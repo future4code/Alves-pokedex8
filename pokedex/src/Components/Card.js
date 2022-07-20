@@ -10,6 +10,7 @@ width:100vw;
 `
 const Header = styled.header`
 height:10%;
+width:100%;
 background-color:white;
 display:flex;
 justify-content:space-evenly;
@@ -22,16 +23,34 @@ const ContainerCard = styled.div`
 width:100%;
 display:flex;
 flex-wrap:wrap;
+@media (min-width : 320px) and (max-width : 480px) {
+background-color:#27282c;
+display:flex;
+flex-direction:column;
+width:94%;
+padding:1%;
+margin:1%;
+}
+`
+const Container10 = styled.div`
 `
 const CardPokemon = styled.div`
 display:flex;
-justify-content:space-between;
 `
 const Container1 = styled.div`
+background-color:white;
+display:flex;
+justify-content:space-between;
+width:100%;
+@media (min-width : 320px) and (max-width : 480px) {
+    background-color:beige;
+    width:98%;
+}
 `
 const Container2 = styled.div`
-/* display:flex; */
-/* justify-content:space-between; */
+@media (min-width : 320px) and (max-width : 480px) {
+    width:100%;
+}
 `
 const ContainerTipo = styled.div`
 display:flex;
@@ -45,10 +64,17 @@ padding-top:1%;
 `
 const Container5 = styled.div`
 background-color:white;
-/* height:24vh; */
 width:29%;
 padding:1%;
 margin:1%;
+@media (min-width : 320px) and (max-width : 480px) {
+background-color:#27282c;
+width:100%;
+display:flex;
+flex-direction:column;
+padding:1%;
+margin:1%;
+}
 `
 const ContainerBotao = styled.div`
 display:flex;
@@ -71,20 +97,33 @@ justify-content:center;
 align-items:center;
 padding:1%;
 `
+const Imagem = styled.img`
+width:200px;
+overflow:hidden;
+`
+const InputCentralizado = styled.div`
+display:flex;
+flex-direction:column;
+align-items:center;
+`
+
 function Card() {
     const navigate = useNavigate()
+    const [nomePokemon, setNomePokemon] = useState("")
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
 
     const { renderizarPokemon, pokemons, addPokemon } = useContext(GlobalContext)
-
     console.log(pokemons)
     useEffect(() => {
         renderizarPokemon()
     }, [])
 
-    const RenderizarCard = pokemons && pokemons.map((pokemon) => {
+
+    const RenderizarCard = pokemons && pokemons.filter((parametro) => {
+        return parametro.name.includes(nomePokemon.toLowerCase())
+    }).map((pokemon) => {
         return <Container5>
             <CardPokemon>
                 <Container1>
@@ -100,10 +139,10 @@ function Card() {
                             })}
                         </Container3>
                     </Container4>
+                    <Container2>
+                        <Imagem src={pokemon.sprites.front_default} />
+                    </Container2>
                 </Container1>
-                <Container2>
-                    <img src={pokemon.sprites.front_default} width="200" />
-                </Container2>
             </CardPokemon>
             <ContainerBotao>
                 <BotaoDetalhes>Detalhes</BotaoDetalhes>
@@ -111,6 +150,9 @@ function Card() {
             </ContainerBotao>
         </Container5>
     })
+    const onChangeNome = (event) => {
+        setNomePokemon(event.target.value)
+    }
     return (
         <MainContainer>
             <Header>
@@ -122,9 +164,13 @@ function Card() {
                     Todos os Pokémons
                 </h1>
             </Titulo>
-            <input
-                placeholder="Filtrar Pokémon"
-            />
+            <InputCentralizado>
+                <input
+                    placeholder="Filtrar Pokémon"
+                    value={nomePokemon}
+                    onChange={onChangeNome}
+                />
+            </InputCentralizado>
             <ContainerCard>
                 {RenderizarCard}
             </ContainerCard>
