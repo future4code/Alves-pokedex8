@@ -41,8 +41,20 @@ width:29%;
 padding:1%;
 margin:1%;
 `
+const ContainerCard = styled.div`
+width:100%;
+display:flex;
+flex-wrap:wrap;
+`
+const Titulo = styled.div`
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:1%;
+`
 function MeusPokemons() {
-    const { capturar } = useContext(GlobalContext)
+    const { capturar, excluirPokemon } = useContext(GlobalContext)
 
     const navigate = useNavigate()
     const goToHome = () => {
@@ -53,35 +65,46 @@ function MeusPokemons() {
     }
 
     const meusPokemons = capturar && capturar.map((pokemon) => {
-        return <CardPokemon>
-            <Container1>
-                <Container4>
-                    <h2>
-                        #{pokemon.id}
-                        <br />
-                        {pokemon.name.toUpperCase()}
-                    </h2>
-                    <Container3>
-                        {pokemon.types.map((tipo) => {
-                            return <ContainerTipo> <h4>{tipo.type.name.toUpperCase()}</h4></ContainerTipo>
-                        })}
-                    </Container3>
-                </Container4>
-            </Container1>
-            <Container2>
-                <img src={pokemon.sprites.front_default} width="200" />
-            </Container2>
-        </CardPokemon>
+        return <Container5>
+            <CardPokemon>
+                <Container1>
+                    <Container4>
+                        <h2>
+                            #{pokemon.id}
+                            <br />
+                            {pokemon.name.toUpperCase()}
+                        </h2>
+                        <Container3>
+                            {pokemon.types.map((tipo) => {
+                                return <ContainerTipo> <h4>{tipo.type.name.toUpperCase()}</h4></ContainerTipo>
+                            })}
+                        </Container3>
+                    </Container4>
+                </Container1>
+                <Container2>
+                    <img src={pokemon.sprites.front_default} width="200" />
+                </Container2>
+                <div>
+                    <button onClick={goToDetails}>Detalhes</button>
+                    <button onClick={() => excluirPokemon(pokemon.id)}>Excluir</button>
+                </div>
+            </CardPokemon>
+        </Container5>
     })
     return (
         <div>
             <Header>
-                <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png" width={200} />
                 <BotaoPokedex onClick={goToHome}> <TextoHome>Voltar Para a home</TextoHome></BotaoPokedex>
+                <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png" width={200} />
             </Header>
-            SEUS POKEMONS CAPTURADOS(POKEDEX)
-            {meusPokemons}
-            <button onClick={goToDetails}>Detalhes</button>
+            <Titulo>
+                <h1>
+                    Meus Pokémons
+                </h1>
+            </Titulo>
+            <ContainerCard>
+                {meusPokemons}
+            </ContainerCard>
         </div>
     );
 }

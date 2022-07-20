@@ -107,7 +107,7 @@ function Card() {
             </CardPokemon>
             <ContainerBotao>
                 <BotaoDetalhes>Detalhes</BotaoDetalhes>
-                <BotaoCapturar onClick={()=> addPokemon(pokemon.id)}>Capturar</BotaoCapturar>
+                <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar</BotaoCapturar>
             </ContainerBotao>
         </Container5>
     })
@@ -119,9 +119,12 @@ function Card() {
             </Header>
             <Titulo>
                 <h1>
-                    POKÉMONS
+                    Todos os Pokémons
                 </h1>
             </Titulo>
+            <input
+                placeholder="Filtrar Pokémon"
+            />
             <ContainerCard>
                 {RenderizarCard}
             </ContainerCard>
