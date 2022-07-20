@@ -4,6 +4,7 @@ import styled from "styled-components"
 import axios from "axios"
 import GlobalContext from "./Global/GlobalContext";
 
+
 const MainContainer = styled.div`
 height:100vh;
 width:100vw;
@@ -113,7 +114,6 @@ function Card() {
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
-
     const { renderizarPokemon, pokemons, addPokemon } = useContext(GlobalContext)
     console.log(pokemons)
     useEffect(() => {
@@ -124,22 +124,44 @@ function Card() {
     const RenderizarCard = pokemons && pokemons.filter((parametro) => {
         return parametro.name.includes(nomePokemon.toLowerCase())
     }).map((pokemon) => {
-        return <Container5>
+        const type = pokemon.types[0].type.name
+        const color = {
+            poison: '#AD61AE',
+            grass: '#70B873',
+            fire: '#F44900',
+            flying: '#6892B0',
+            water: '#33A4F5',
+            bug: '#316520',
+            normal: '#8A8A8A',
+            dark: '#5C5365',
+            dragon: '#0A6CBF',
+            electric: '#F4D23B',
+            fairy: '#EC8FE6',
+            fighting: '#CE4069',
+            ghost: '#5269AC',
+            ground: '#D97745',
+            ice: '#74CEC0',
+            psychic: '#F67176',
+            rock: '#C7B78B',
+            steel: '#BBBBBB',
+        }[type]
+        console.log(pokemon.types[0].type.name)
+        return <Container5 style={{ backgroundColor: `${color}` }}>
             <CardPokemon>
-                <Container1>
-                    <Container4>
+                <Container1 style={{ backgroundColor: `${color}` }}>
+                    <Container4 style={{ backgroundColor: `${color}` }}>
                         <h2>
                             #{pokemon.id}
                             <br />
                             {pokemon.name.toUpperCase()}
                         </h2>
-                        <Container3>
+                        <Container3 >
                             {pokemon.types.map((tipo) => {
-                                return <ContainerTipo> <h4>{tipo.type.name.toUpperCase()}</h4></ContainerTipo>
+                                return <ContainerTipo style={{ backgroundColor: `${color}` }}> <h4>{tipo.type.name.toUpperCase()}</h4></ContainerTipo>
                             })}
                         </Container3>
                     </Container4>
-                    <Container2>
+                    <Container2 style={{ backgroundColor: `${color}` }}>
                         <Imagem src={pokemon.sprites.front_default} />
                     </Container2>
                 </Container1>

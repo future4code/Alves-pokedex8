@@ -9,7 +9,7 @@ const GlobalState = (props) => {
 
 
     const renderizarPokemon = async () => {
-        const respApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=30`)
+        const respApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=60`)
         const StoragePokemon = []
         for (let i = 0; i < respApi.data.results.length; i++) {
             if (i == 0 && pokemons.length != 0) {
