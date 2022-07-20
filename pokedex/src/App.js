@@ -7,12 +7,14 @@ const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
   padding: 0;
+  max-width:100vw;
   font-family: 'Noto Sans', sans-serif;
 }
 body{ 
   height:100vh;
-  width:100vw;
-  background:#27282c
+  /* width:100vw; */
+  background:#27282c;
+  overflow-x:hidden;
 }
 `
 

@@ -25,13 +25,13 @@ const GlobalState = (props) => {
         const ids = capturar.map((id) => {
             return id.id
         })
+        if (ids.includes(id) || capturar.length >= 6) {
+            return
+        }
         const pokemonsAtualizado = pokemons.filter((item) => {
             return item.id != id
         })
         setPokemons(pokemonsAtualizado)
-        if (ids.includes(id) || capturar.length >= 6) {
-            return
-        }
         axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             .then((resposta) => {
                 setCapturar([...capturar, resposta.data])
