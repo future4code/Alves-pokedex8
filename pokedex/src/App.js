@@ -1,6 +1,5 @@
 import React from "react";
 import { Router } from "./Routes/Router";
-import Card from "./Components/Card";
 import { createGlobalStyle } from "styled-components";
 import GlobalState from "./Components/Global/GlobalState";
 
