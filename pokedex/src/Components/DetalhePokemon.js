@@ -3,6 +3,46 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 import GlobalContext from "./Global/GlobalContext"
 
+const Imagem = styled.img`
+width: 60%;
+`
+const CardImage2 = styled.div`
+`
+const CardImage1 = styled.div`
+
+`
+const CardImages = styled.div`
+
+`
+const CardMoves = styled.div`
+
+`
+const CardBaseStatus = styled.div`
+background-color: white;
+`
+const CardTypeName = styled.div`
+
+`
+const CardName = styled.div`
+background-color: white;
+
+`
+const CardPrincipal = styled.div`
+display: flex;
+background-color: green;
+position: absolute;
+width: 1389.14px;
+height: 663px;
+justify-content: center;
+
+`
+const Container = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+text-align: center;
+`
+
 const Header = styled.header`
 height:10%;
 background-color:white;
@@ -34,39 +74,43 @@ function DetalhePokemon() {
         for (let i = 0; i < 4; i++) {
             moves.push(<p>{pokemon.moves[i].move.name}</p>)
         }
-        return <div>
+        return <Container>
+            < CardPrincipal >
+            < CardName >
             <h2>
                 #{pokemon.id}
                 <br />
                 {pokemon.name.toUpperCase()}
             </h2>
-            <div>
+            </ CardName >
+            <CardTypeName>
                 {pokemon.types.map((tipo) => {
                     return <div><h4>{tipo.type.name.toUpperCase()}</h4></div>
                 })}
-            </div>
-            <div>
+            </CardTypeName>
+            <CardMoves>
                 {moves}
-            </div>
-            <div>
+            </CardMoves>
+            <CardBaseStatus>
                 {pokemon.stats.map((status) => {
                     return <div>
                         <p>Base Stats</p>
                         <p>{status.stat.name.toUpperCase()}:{status.base_stat}</p>
                     </div>
                 })}
-            </div>
-            <div>
-                <div>
+            </CardBaseStatus>
+            <CardImages>
+                <CardImage1>
                     <p>Normal:</p>
-                    <img src={pokemon.sprites.other.home.front_default} />
-                </div>
-                <div>
+                    <Imagem src={pokemon.sprites.other.home.front_default} />
+                </CardImage1>
+                <CardImage2>
                     <p>Shiny:</p>
-                    <img src={pokemon.sprites.other.home.front_shiny} />
-                </div>
-            </div>
-        </div>
+                    <Imagem src={pokemon.sprites.other.home.front_shiny} />
+                </CardImage2>
+            </CardImages>
+            </ CardPrincipal >
+        </Container>
     })
     return (
         <div>
