@@ -159,6 +159,26 @@ function MeusPokemons() {
             rock: '#C7B78B',
             steel: '#BBBBBB',
         }
+        const backColor = {
+            poison: '#87516E',
+            grass: '#7CF07B',
+            fire: '#F97862',
+            flying: '#2EE5E6',
+            water: '#0050CD',
+            bug: '#307033',
+            normal: '#666666',
+            dark: '#203A61',
+            dragon: '#C2A636',
+            electric: '#FEF032',
+            fairy: '#FF54AF',
+            fighting: '#B57649',
+            ghost: '#743142',
+            ground: '#E99E23',
+            ice: '#BFF7FF',
+            psychic: '#BF2BF9',
+            rock: '#6F6459',
+            steel: '#76868E',
+        }
         const icon = {
             poison:  poison ,
             grass:  grass ,
@@ -179,7 +199,7 @@ function MeusPokemons() {
             rock:  rock ,
             steel:  steel ,
         }
-        return <MainCard style={{ backgroundColor: `${color[type]}` }}>
+        return <MainCard style={{ backgroundColor: `${backColor[type]}` }}>
             <CardPokemon>
                 <ContainerMainInfo>
                     <ContainerInfo>

@@ -231,7 +231,6 @@ function Card() {
             psychic: '#BF2BF9',
             rock: '#6F6459',
             steel: '#76868E',
-        }[type]
         const icon = {
             poison: poison,
             grass: grass,
@@ -252,7 +251,7 @@ function Card() {
             rock: rock,
             steel: steel,
         }
-        return <MainCard style={{ backgroundColor: `${backColor}` }}>
+        return <MainCard style={{ backgroundColor: `${backColor[type]}` }}>
             <CardPokemon>
                 <ContainerMainInfo >
                     <ContainerInfo >
