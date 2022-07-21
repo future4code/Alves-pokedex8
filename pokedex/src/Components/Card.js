@@ -90,9 +90,12 @@ display:flex;
 justify-content:space-between;
 `
 const BotaoCapturar = styled.button`
-padding:3%;
-background:black;
-color:white;
+margin:1%;
+border:none;
+width:25%;
+font-weight:900;
+background:white;
+color:black;
 border-radius:20px;
 `
 const BotaoDetalhes = styled.button`
@@ -137,10 +140,10 @@ function Card() {
     useEffect(() => {
         renderizarPokemon()
     }, [])
-const detalhesFuncao = () =>{
-    goToDetails();
-    detailsPokemon()
-}
+    const detalhesFuncao = () => {
+        goToDetails();
+        detailsPokemon()
+    }
 
     const RenderizarCard = pokemons && pokemons.filter((parametro) => {
         return parametro.name.includes(nomePokemon.toLowerCase())
@@ -183,13 +186,13 @@ const detalhesFuncao = () =>{
                         </ContainerType>
                     </ContainerInfo>
                     <ContainerImgPoke >
-                        <Imagem src={pokemon.sprites.front_default} />
+                        <Imagem src={pokemon.sprites.other["official-artwork"].front_default} />
                     </ContainerImgPoke>
                 </ContainerMainInfo>
             </CardPokemon>
             <ContainerBotao>
                 <BotaoDetalhes onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${color}` }}>Detalhes</BotaoDetalhes>
-                <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar</BotaoCapturar>
+                <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar!</BotaoCapturar>
             </ContainerBotao>
         </MainCard>
     })
