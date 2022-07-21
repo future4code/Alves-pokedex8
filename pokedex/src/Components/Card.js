@@ -3,6 +3,24 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components"
 import axios from "axios"
 import GlobalContext from "./Global/GlobalContext";
+import poison from "../img/poison.png"
+import normal from "../img/normal.png"
+import grass from "../img/grass.png"
+import fire from "../img/fire.png"
+import flying from "../img/flying.png"
+import water from "../img/water.png"
+import bug from "../img/bug.png"
+import dark from "../img/dark.png"
+import dragon from "../img/dragon.png"
+import electric from "../img/electric.png"
+import fairy from "../img/fairy.png"
+import fighting from "../img/fighting.png"
+import ghost from "../img/ghost.png"
+import ground from "../img/ground.png"
+import ice from "../img/ice.png"
+import psychic from "../img/psychic.png"
+import rock from "../img/rock.png"
+import steel from "../img/steel.png"
 
 
 const MainContainer = styled.div`
@@ -65,12 +83,28 @@ width:100%;
 `
 const ContainerImgPoke = styled.div`
 `
-const ContainerTipo = styled.div`
-display:flex;
-padding-right:10%;
-`
+
 const ContainerType = styled.div`
-display:flex;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 5px 8px;
+width: 99px;
+background: ${props => props.color};
+margin: 10px 0px;
+border: 1px dashed rgba(255, 255, 255, 0.47);
+border-radius: 8px;
+`
+
+const ContainerTypes = styled.div`
+display: block;
+`
+
+
+const IconImage = styled.img`
+width: 20px;
+height: 20px;
+padding-right: 10px;
 `
 const ContainerInfo = styled.div`
 margin:3%;
@@ -115,6 +149,7 @@ border:none;
 border-radius:20px;
 font-size:1.2rem;
 color:white;
+background-color: ${props => props.color};
 text-decoration: underline;
 `
 const Titulo = styled.div`
@@ -175,6 +210,28 @@ function Card() {
             steel: '#BBBBBB',
         }[type]
         return <MainCard style={{ backgroundColor: `${color}` }}>
+        }
+        const icon = {
+            poison:  poison ,
+            grass:  grass ,
+            fire:  fire ,
+            flying:  flying ,
+            water:  water ,
+            bug:  bug ,
+            normal:  normal ,
+            dark:  dark ,
+            dragon:  dragon ,
+            electric:  electric ,
+            fairy:  fairy ,
+            fighting: fighting ,
+            ghost: ghost ,
+            ground: ground ,
+            ice:  ice ,
+            psychic:  psychic ,
+            rock:  rock ,
+            steel:  steel ,
+        }
+        return <MainCard style={{ backgroundColor: `${color[type]}` }}>
             <CardPokemon>
                 <ContainerMainInfo >
                     <ContainerInfo >
@@ -183,11 +240,14 @@ function Card() {
                             <br />
                             {pokemon.name.toUpperCase()}
                         </h2>
-                        <ContainerType >
+                        <ContainerTypes>
                             {pokemon.types.map((tipo) => {
-                                return <ContainerTipo > <h4>{tipo.type.name.toUpperCase()}</h4></ContainerTipo>
+                                return <ContainerType key={tipo.type.name} color={color[tipo.type.name]}>
+                                    <IconImage src={icon[tipo.type.name]}></IconImage>
+                                    <h4 >{tipo.type.name.charAt(0).toUpperCase() + tipo.type.name.slice(1)}</h4>
+                                </ContainerType>
                             })}
-                        </ContainerType>
+                        </ContainerTypes>
                     </ContainerInfo>
                     <ContainerImgPoke >
                         <Imagem src={pokemon.sprites.other["official-artwork"].front_default} />
@@ -197,8 +257,9 @@ function Card() {
             <ContainerBotao>
                 <BotaoDetalhes to={"/Details"} onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${color}` }}>Detalhes</BotaoDetalhes>
                 <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar!</BotaoCapturar>
+
             </ContainerBotao>
-        </MainCard>
+        </MainCard >
     })
     const onChangeNome = (event) => {
         setNomePokemon(event.target.value)
