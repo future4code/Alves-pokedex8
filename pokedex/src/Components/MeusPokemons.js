@@ -200,6 +200,7 @@ function MeusPokemons() {
             steel: steel,
         }
         return <MainCard style={{ backgroundColor: `${backColor}` }}>
+
             <CardPokemon>
                 <ContainerMainInfo>
                     <ContainerInfo>
