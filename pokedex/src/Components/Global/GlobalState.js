@@ -44,7 +44,7 @@ const GlobalState = (props) => {
             return id.id
         })        
         if (ids.includes(id)) {
-            return console.log("teste")
+            return 
         }
         axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             .then((resposta) => {
