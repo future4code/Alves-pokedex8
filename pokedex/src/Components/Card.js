@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components"
 import axios from "axios"
 import GlobalContext from "./Global/GlobalContext";
+
 
 const MainContainer = styled.div`
 height:100vh;
@@ -108,7 +109,7 @@ background:white;
 color:black;
 border-radius:20px;
 `
-const BotaoDetalhes = styled.button`
+const BotaoDetalhes = styled(Link)`
 padding:3%;
 border:none;
 border-radius:20px;
@@ -124,7 +125,7 @@ align-items:center;
 padding:1%;
 `
 const Imagem = styled.img`
-width:200px; /* DUVIDA PARA SETAR IMG A DIREITA FIXED/ABSOLUT */
+width:200px;
 overflow:hidden;
 `
 const InputCentralizado = styled.div`
@@ -146,15 +147,9 @@ function Card() {
         navigate("/Details")
     }
     const { renderizarPokemon, pokemons, addPokemon, detailsPokemon, pokemonUnico } = useContext(GlobalContext)
-    console.log(pokemons)
     useEffect(() => {
         renderizarPokemon()
     }, [])
-    const detalhesFuncao = () => {
-        goToDetails();
-        detailsPokemon()
-    }
-
     const RenderizarCard = pokemons && pokemons.filter((parametro) => {
         return parametro.name.includes(nomePokemon.toLowerCase())
     }).map((pokemon) => {
@@ -179,7 +174,6 @@ function Card() {
             rock: '#C7B78B',
             steel: '#BBBBBB',
         }[type]
-        console.log(pokemon.types[0].type.name)
         return <MainCard style={{ backgroundColor: `${color}` }}>
             <CardPokemon>
                 <ContainerMainInfo >
@@ -201,7 +195,7 @@ function Card() {
                 </ContainerMainInfo>
             </CardPokemon>
             <ContainerBotao>
-                <BotaoDetalhes onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${color}` }}>Detalhes</BotaoDetalhes>
+                <BotaoDetalhes to={"/Details"} onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${color}` }}>Detalhes</BotaoDetalhes>
                 <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar!</BotaoCapturar>
             </ContainerBotao>
         </MainCard>
@@ -209,7 +203,6 @@ function Card() {
     const onChangeNome = (event) => {
         setNomePokemon(event.target.value)
     }
-    console.log(pokemonUnico)
     return (
         <MainContainer>
             <Header>
