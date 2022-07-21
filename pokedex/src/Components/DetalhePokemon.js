@@ -19,6 +19,7 @@ const TextoHome = styled.h3`
 `
 
 function DetalhePokemon() {
+    const {pokemons} = useContext(GlobalContext)
     const navigate = useNavigate()
     const goToHome = () => {
         navigate("/")
