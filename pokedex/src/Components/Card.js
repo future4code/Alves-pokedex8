@@ -36,6 +36,16 @@ align-items:center;
 `
 const BotaoPokedex = styled.button`
 border: 0px;
+border-radius: 8px;
+    width: 8%;
+    font-size: 25px;
+    font-weight: 700;
+    color: white;
+    background-color: #70C3FF;
+    padding: 12px 1px 12px 1px;
+    :hover{
+       color: #FAC705;
+    }
 `
 const ContainerCard = styled.div`
 width:100%;
@@ -124,9 +134,12 @@ display:flex;
 justify-content:space-between;
 `
 const BotaoCapturar = styled.button`
-padding:3%;
-background:black;
-color:white;
+margin:1%;
+border:none;
+width:25%;
+font-weight:900;
+background:white;
+color:black;
 border-radius:20px;
 `
 const BotaoDetalhes = styled.button`
@@ -175,7 +188,6 @@ function Card() {
         goToDetails();
         detailsPokemon()
     }
-
 
 
     const RenderizarCard = pokemons && pokemons.filter((parametro) => {
@@ -241,13 +253,18 @@ function Card() {
                         </ContainerTypes>
                     </ContainerInfo>
                     <ContainerImgPoke >
-                        <Imagem src={pokemon.sprites.front_default} />
+                        <Imagem src={pokemon.sprites.other["official-artwork"].front_default} />
                     </ContainerImgPoke>
                 </ContainerMainInfo>
             </CardPokemon>
             <ContainerBotao>
+
                 <BotaoDetalhes onClick={() => detailsPokemon(pokemon.id)} color={color[type]}>Detalhes</BotaoDetalhes>
                 <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar</BotaoCapturar>
+
+                <BotaoDetalhes onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${color}` }}>Detalhes</BotaoDetalhes>
+                <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar!</BotaoCapturar>
+
             </ContainerBotao>
         </MainCard >
     })
@@ -258,7 +275,7 @@ function Card() {
         <MainContainer>
             <Header>
                 <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png" width={200} />
-                <BotaoPokedex onClick={goToPokedex}> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRDdGf-hzKxuQKMOBEkDzXIzHX07zD9eZPJhu7RH-GseJhmzNI6Yow080XZP5OfEWVybA&usqp=CAU" width={80} /></BotaoPokedex>
+                <BotaoPokedex onClick={goToPokedex}>Pokédex</BotaoPokedex>
             </Header>
             <Titulo>
                 <h1>
