@@ -4,7 +4,6 @@ import styled from "styled-components"
 import axios from "axios"
 import GlobalContext from "./Global/GlobalContext";
 
-
 const MainContainer = styled.div`
 height:100vh;
 width:100vw;
@@ -39,47 +38,56 @@ background-color:#27282c;
 display:flex;
 flex-direction:column;
 width:94%;
-padding:1%;
 margin:1%;
 }
-`
-const Container10 = styled.div`
+@media (min-width : 481px) and (max-width : 1250px) {
+background-color:#27282c;
+display:flex;
+flex-direction:column;
+width:94%;
+margin:1%;
+}
 `
 const CardPokemon = styled.div`
 display:flex;
 `
-const Container1 = styled.div`
-background-color:white;
+const ContainerMainInfo = styled.div`
 display:flex;
 justify-content:space-between;
 width:100%;
 @media (min-width : 320px) and (max-width : 480px) {
-    background-color:beige;
+    width:98%;
+}
+@media (min-width : 481px) and (max-width : 1250px) {
     width:98%;
 }
 `
-const Container2 = styled.div`
-@media (min-width : 320px) and (max-width : 480px) {
-    width:100%;
-}
+const ContainerImgPoke = styled.div`
 `
 const ContainerTipo = styled.div`
 display:flex;
 padding-right:10%;
 `
-const Container3 = styled.div`
+const ContainerType = styled.div`
 display:flex;
 `
-const Container4 = styled.div`
-padding-top:1%;
+const ContainerInfo = styled.div`
+margin:3%;
 `
-const Container5 = styled.div`
-background-color:white;
+const MainCard = styled.div`
 width:29%;
 padding:1%;
 margin:1%;
+border-radius:20px;
+/* box-shadow:0 0 1em white; */
 @media (min-width : 320px) and (max-width : 480px) {
-background-color:#27282c;
+width:100%;
+display:flex;
+flex-direction:column;
+padding:1%;
+margin:1%;
+}
+@media (min-width : 481px) and (max-width : 1250px) {
 width:100%;
 display:flex;
 flex-direction:column;
@@ -95,11 +103,15 @@ const BotaoCapturar = styled.button`
 padding:3%;
 background:black;
 color:white;
+border-radius:20px;
 `
 const BotaoDetalhes = styled.button`
 padding:3%;
-background:black;
+border:none;
+border-radius:20px;
+font-size:1.2rem;
 color:white;
+text-decoration: underline;
 `
 const Titulo = styled.div`
 color:white;
@@ -109,13 +121,16 @@ align-items:center;
 padding:1%;
 `
 const Imagem = styled.img`
-width:200px;
+width:200px; /* DUVIDA PARA SETAR IMG A DIREITA FIXED/ABSOLUT */
 overflow:hidden;
 `
 const InputCentralizado = styled.div`
 display:flex;
 flex-direction:column;
 align-items:center;
+`
+const Input = styled.input`
+padding:10px;
 `
 
 function Card() {
@@ -124,12 +139,18 @@ function Card() {
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
-    const { renderizarPokemon, pokemons, addPokemon } = useContext(GlobalContext)
+    const goToDetails = () => {
+        navigate("/Details")
+    }
+    const { renderizarPokemon, pokemons, addPokemon, detailsPokemon, pokemonUnico } = useContext(GlobalContext)
     console.log(pokemons)
     useEffect(() => {
         renderizarPokemon()
     }, [])
-
+const detalhesFuncao = () =>{
+    goToDetails();
+    detailsPokemon()
+}
 
     const RenderizarCard = pokemons && pokemons.filter((parametro) => {
         return parametro.name.includes(nomePokemon.toLowerCase())
@@ -156,35 +177,36 @@ function Card() {
             steel: '#BBBBBB',
         }[type]
         console.log(pokemon.types[0].type.name)
-        return <Container5 style={{ backgroundColor: `${color}` }}>
+        return <MainCard style={{ backgroundColor: `${color}` }}>
             <CardPokemon>
-                <Container1 style={{ backgroundColor: `${color}` }}>
-                    <Container4 style={{ backgroundColor: `${color}` }}>
+                <ContainerMainInfo >
+                    <ContainerInfo >
                         <h2>
                             #{pokemon.id}
                             <br />
                             {pokemon.name.toUpperCase()}
                         </h2>
-                        <Container3 >
+                        <ContainerType >
                             {pokemon.types.map((tipo) => {
-                                return <ContainerTipo style={{ backgroundColor: `${color}` }}> <h4>{tipo.type.name.toUpperCase()}</h4></ContainerTipo>
+                                return <ContainerTipo > <h4>{tipo.type.name.toUpperCase()}</h4></ContainerTipo>
                             })}
-                        </Container3>
-                    </Container4>
-                    <Container2 style={{ backgroundColor: `${color}` }}>
+                        </ContainerType>
+                    </ContainerInfo>
+                    <ContainerImgPoke >
                         <Imagem src={pokemon.sprites.front_default} />
-                    </Container2>
-                </Container1>
+                    </ContainerImgPoke>
+                </ContainerMainInfo>
             </CardPokemon>
             <ContainerBotao>
-                <BotaoDetalhes>Detalhes</BotaoDetalhes>
+                <BotaoDetalhes onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${color}` }}>Detalhes</BotaoDetalhes>
                 <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar</BotaoCapturar>
             </ContainerBotao>
-        </Container5>
+        </MainCard>
     })
     const onChangeNome = (event) => {
         setNomePokemon(event.target.value)
     }
+    console.log(pokemonUnico)
     return (
         <MainContainer>
             <Header>
@@ -197,7 +219,7 @@ function Card() {
                 </h1>
             </Titulo>
             <InputCentralizado>
-                <input
+                <Input
                     placeholder="Filtrar Pokémon"
                     value={nomePokemon}
                     onChange={onChangeNome}
