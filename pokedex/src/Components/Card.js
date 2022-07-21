@@ -22,7 +22,6 @@ import psychic from "../img/psychic.png"
 import rock from "../img/rock.png"
 import steel from "../img/steel.png"
 
-
 const MainContainer = styled.div`
 height:100vh;
 width:100vw;
@@ -38,21 +37,19 @@ align-items:center;
 const BotaoPokedex = styled.button`
 border: 0px;
 border-radius: 8px;
-    width: 20vh;
-    font-size: 25px;
-    font-weight: 700;
-    color: white;
-    background-color: #70C3FF;
-    padding: 12px 1px 12px 1px;
+width: 20vh;
+font-size: 25px;
+font-weight: 700;
+color: white;
+background-color: #70C3FF;
+padding: 12px 1px 12px 1px;
     :hover{
        color: #FAC705;
-    };
+    }
     @media(min-width: 375px) and (max-width:765px){
         width: 18vh;
     }
-  
 `
-
 const ContainerCard = styled.div`
 width:100%;
 display:flex;
@@ -165,7 +162,7 @@ align-items:center;
 padding:1%;
 `
 const Imagem = styled.img`
-width:200px;
+width:200px; /* DUVIDA PARA SETAR IMG A DIREITA FIXED/ABSOLUT */
 overflow:hidden;
 `
 const InputCentralizado = styled.div`
@@ -184,10 +181,19 @@ function Card() {
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
+    const goToDetails = () => {
+        navigate("/Details")
+    }
     const { renderizarPokemon, pokemons, addPokemon, detailsPokemon, pokemonUnico } = useContext(GlobalContext)
     useEffect(() => {
         renderizarPokemon()
     }, [])
+    const detalhesFuncao = () => {
+        goToDetails();
+        detailsPokemon()
+    }
+
+
     const RenderizarCard = pokemons && pokemons.filter((parametro) => {
         return parametro.name.includes(nomePokemon.toLowerCase())
     }).map((pokemon) => {
@@ -231,6 +237,7 @@ function Card() {
             psychic: '#BF2BF9',
             rock: '#6F6459',
             steel: '#76868E',
+        }
         const icon = {
             poison: poison,
             grass: grass,
@@ -275,9 +282,8 @@ function Card() {
                 </ContainerMainInfo>
             </CardPokemon>
             <ContainerBotao>
-                <BotaoDetalhes to={"/Details"} onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${color}` }}>Detalhes</BotaoDetalhes>
+                <BotaoDetalhes to={"/Details"} onClick={() => detailsPokemon(pokemon.id)} style={{ backgroundColor: `${backColor[type]}` }}>Detalhes</BotaoDetalhes>
                 <BotaoCapturar onClick={() => addPokemon(pokemon.id)}>Capturar!</BotaoCapturar>
-
             </ContainerBotao>
         </MainCard >
     })
