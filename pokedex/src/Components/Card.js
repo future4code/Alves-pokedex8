@@ -19,7 +19,7 @@ align-items:center;
 const BotaoPokedex = styled.button`
 border: 0px;
 border-radius: 8px;
-    width: 8%;
+    width: 20vh;
     font-size: 25px;
     font-weight: 700;
     color: white;
@@ -27,8 +27,13 @@ border-radius: 8px;
     padding: 12px 1px 12px 1px;
     :hover{
        color: #FAC705;
+    };
+    @media(min-width: 375px) and (max-width:765px){
+        width: 18vh;
     }
+  
 `
+
 const ContainerCard = styled.div`
 width:100%;
 display:flex;
@@ -100,10 +105,18 @@ display:flex;
 justify-content:space-between;
 `
 const BotaoCapturar = styled.button`
-padding:3%;
-background:black;
-color:white;
-border-radius:20px;
+width: 78px;
+height: 24px;
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height */
+color: #0F0F0F;
+margin-left: 249px;
+border-radius: 8px;
+padding: 4px, 10px, 4px, 10px;
+
 `
 const BotaoDetalhes = styled.button`
 padding:3%;
