@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import React, { useContext } from "react"
 import styled from "styled-components"
 import GlobalContext from "./Global/GlobalContext"
@@ -111,14 +111,14 @@ const ContainerBotao = styled.div`
 display:flex;
 justify-content:space-between;
 `
-const BotaoDetalhes = styled.button`
+const BotaoDetalhes = styled(Link)`
 padding:3%;
 border:none;
 border-radius:20px;
 font-size:1.2rem;
 color:white;
-text-decoration: underline;
 background-color: ${props => props.color};
+text-decoration: underline;
 `
 const BotaoCapturar = styled.button`
 padding:3%;
@@ -127,7 +127,7 @@ color:white;
 border-radius:20px;
 `
 function MeusPokemons() {
-    const { capturar, excluirPokemon } = useContext(GlobalContext)
+    const { capturar, excluirPokemon, detailsPokemon, pokemons, addPokemon } = useContext(GlobalContext)
 
     const navigate = useNavigate()
     const goToHome = () => {
@@ -178,28 +178,29 @@ function MeusPokemons() {
             psychic: '#BF2BF9',
             rock: '#6F6459',
             steel: '#76868E',
-        }
+        }[type]
         const icon = {
-            poison:  poison ,
-            grass:  grass ,
-            fire:  fire ,
-            flying:  flying ,
-            water:  water ,
-            bug:  bug ,
-            normal:  normal ,
-            dark:  dark ,
-            dragon:  dragon ,
-            electric:  electric ,
-            fairy:  fairy ,
-            fighting: fighting ,
-            ghost: ghost ,
-            ground: ground ,
-            ice:  ice ,
-            psychic:  psychic ,
-            rock:  rock ,
-            steel:  steel ,
+            poison: poison,
+            grass: grass,
+            fire: fire,
+            flying: flying,
+            water: water,
+            bug: bug,
+            normal: normal,
+            dark: dark,
+            dragon: dragon,
+            electric: electric,
+            fairy: fairy,
+            fighting: fighting,
+            ghost: ghost,
+            ground: ground,
+            ice: ice,
+            psychic: psychic,
+            rock: rock,
+            steel: steel,
         }
-        return <MainCard style={{ backgroundColor: `${backColor[type]}` }}>
+        return <MainCard style={{ backgroundColor: `${backColor}` }}>
+
             <CardPokemon>
                 <ContainerMainInfo>
                     <ContainerInfo>
@@ -223,8 +224,8 @@ function MeusPokemons() {
                 </ContainerMainInfo>
             </CardPokemon>
             <ContainerBotao>
-                <BotaoDetalhes color={color[type]} onClick={goToDetails}>Detalhes</BotaoDetalhes>
-                <BotaoCapturar onClick={() => excluirPokemon(pokemon.id)}>Excluir</BotaoCapturar>
+                <BotaoDetalhes to={"/Details"} onClick={() => detailsPokemon(pokemon.id)} >Detalhes</BotaoDetalhes>
+                <BotaoCapturar onClick={() => excluirPokemon(pokemon)}>Excluir</BotaoCapturar>
             </ContainerBotao>
         </MainCard>
     })
