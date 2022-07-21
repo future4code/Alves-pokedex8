@@ -120,6 +120,7 @@ padding:1%;
 margin:1%;
 border-radius:20px;
 /* box-shadow:0 0 1em white; */
+background:${props => props.backgroundColor};
 @media (min-width : 320px) and (max-width : 480px) {
 width:100%;
 display:flex;
@@ -184,12 +185,20 @@ function Card() {
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
-    const { renderizarPokemon, pokemons, addPokemon, detailsPokemon, pokemonUnico } = useContext(GlobalContext)
+    const { renderizarPokemon, pokemons, addPokemon, detailsPokemon, capturar, } = useContext(GlobalContext)
     useEffect(() => {
         renderizarPokemon()
-    }, [])
+    }, [capturar])
     const RenderizarCard = pokemons && pokemons.filter((parametro) => {
         return parametro.name.includes(nomePokemon.toLowerCase())
+    }).sort(function (a, b) {
+        if (a.id > b.id) {
+            return 1;
+        }
+        if (a.id < b.id) {
+            return -1;
+        }
+        return 0;
     }).map((pokemon) => {
         const type = pokemon.types[0].type.name
         const color = {
@@ -252,12 +261,12 @@ function Card() {
             rock: rock,
             steel: steel,
         }
-        return <MainCard style={{ backgroundColor: `${backColor}` }}>
+        return <MainCard backgroundColor={backColor}>
             <CardPokemon>
                 <ContainerMainInfo >
                     <ContainerInfo >
                         <h2>
-                            #{pokemon.id}
+                            #{pokemon.id < 10 && 0}{pokemon.id}
                             <br />
                             {pokemon.name.toUpperCase()}
                         </h2>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GlobalContext from "./GlobalContext";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ const GlobalState = (props) => {
 
 
     const renderizarPokemon = async () => {
-        const respApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=60`)
+        const respApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=300`)
         const StoragePokemon = []
         for (let i = 0; i < respApi.data.results.length; i++) {
             if (i == 0 && pokemons.length != 0) {
@@ -21,7 +21,6 @@ const GlobalState = (props) => {
         }
         await setPokemons(StoragePokemon)
     }
-
     const addPokemon = (id) => {
         const ids = capturar.map((id) => {
             return id.id
@@ -40,22 +39,17 @@ const GlobalState = (props) => {
     }
 
     const detailsPokemon = (id) => {
-        const ids = capturar.map((id) => {
-            return id.id
-        })        
-        if (ids.includes(id)) {
-            return 
-        }
         axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             .then((resposta) => {
                 setPokemonUnico([resposta.data])
             })
     }
-    const excluirPokemon = (id) => {
+    const excluirPokemon = (pokemon) => {
         const novaPokedex = capturar.filter((item) => {
-            return item.id != id
+            return item.id != pokemon.id
         })
         setCapturar(novaPokedex)
+        setPokemons([...pokemons, pokemon])
     }
 
     const values = {
@@ -68,7 +62,7 @@ const GlobalState = (props) => {
         excluirPokemon,
         detailsPokemon,
         pokemonUnico,
-        setPokemonUnico
+        setPokemonUnico,
     }
     return (
         <GlobalContext.Provider value={values}>
