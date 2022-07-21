@@ -218,7 +218,7 @@ function MeusPokemons() {
                         </ContainerTypes>
                     </ContainerInfo>
                     <ContainerImgPoke>
-                        <img src={pokemon.sprites.front_default} width="200" />
+                        <img src={pokemon.sprites.other["official-artwork"].front_default} width="200" />
                     </ContainerImgPoke>
                 </ContainerMainInfo>
             </CardPokemon>

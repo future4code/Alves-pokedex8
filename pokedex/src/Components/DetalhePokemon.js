@@ -19,7 +19,7 @@ const TextoHome = styled.h3`
 `
 
 function DetalhePokemon() {
-    const {pokemons} = useContext(GlobalContext)
+    const { pokemons } = useContext(GlobalContext)
     const navigate = useNavigate()
     const goToHome = () => {
         navigate("/")
@@ -31,7 +31,7 @@ function DetalhePokemon() {
 
     const renderizarDetalhes = pokemonUnico && pokemonUnico.map((pokemon) => {
         const moves = []
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             moves.push(<p>{pokemon.moves[i].move.name}</p>)
         }
         return <div>
@@ -51,6 +51,7 @@ function DetalhePokemon() {
             <div>
                 {pokemon.stats.map((status) => {
                     return <div>
+                        <p>Base Stats</p>
                         <p>{status.stat.name.toUpperCase()}:{status.base_stat}</p>
                     </div>
                 })}
@@ -67,7 +68,6 @@ function DetalhePokemon() {
             </div>
         </div>
     })
-    console.log(pokemonUnico)
     return (
         <div>
             <Header>
@@ -75,6 +75,7 @@ function DetalhePokemon() {
                 <BotaoPokedex onClick={goToPokedex}> <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png" width={200} /></BotaoPokedex>
                 <BotaoPokedex onClick={goToHome}> <TextoHome>Excluir da Pokédex</TextoHome></BotaoPokedex>
             </Header>
+            <h1>Detalhes</h1>
             <div>
                 {renderizarDetalhes}
             </div>
