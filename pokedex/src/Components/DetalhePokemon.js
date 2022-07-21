@@ -19,7 +19,7 @@ const TextoHome = styled.h3`
 `
 
 function DetalhePokemon() {
-    const {pokemons} = useContext(GlobalContext)
+    const { pokemons } = useContext(GlobalContext)
     const navigate = useNavigate()
     const goToHome = () => {
         navigate("/")
@@ -67,7 +67,6 @@ function DetalhePokemon() {
             </div>
         </div>
     })
-    console.log(pokemonUnico)
     return (
         <div>
             <Header>
@@ -75,6 +74,7 @@ function DetalhePokemon() {
                 <BotaoPokedex onClick={goToPokedex}> <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png" width={200} /></BotaoPokedex>
                 <BotaoPokedex onClick={goToHome}> <TextoHome>Excluir da Pokédex</TextoHome></BotaoPokedex>
             </Header>
+            <h1>Detalhes</h1>
             <div>
                 {renderizarDetalhes}
             </div>
