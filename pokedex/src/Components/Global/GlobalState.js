@@ -5,7 +5,8 @@ import axios from "axios";
 const GlobalState = (props) => {
     const [capturar, setCapturar] = useState([])
     const [pokemons, setPokemons] = useState([])
-    const [usuarioPokemon, setUsuarioPokemon] = useState("")
+    const [usuarioPokemon, setDetailsPokemon] = useState("")
+    const [pokemonUnico, setPokemonUnico] = useState("")
 
 
     const renderizarPokemon = async () => {
@@ -38,6 +39,18 @@ const GlobalState = (props) => {
             })
     }
 
+    const detailsPokemon = (id) => {
+        const ids = capturar.map((id) => {
+            return id.id
+        })        
+        if (ids.includes(id)) {
+            return console.log("teste")
+        }
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            .then((resposta) => {
+                setPokemonUnico([resposta.data])
+            })
+    }
     const excluirPokemon = (id) => {
         const novaPokedex = capturar.filter((item) => {
             return item.id != id
@@ -53,6 +66,9 @@ const GlobalState = (props) => {
         pokemons,
         addPokemon,
         excluirPokemon,
+        detailsPokemon,
+        pokemonUnico,
+        setPokemonUnico
     }
     return (
         <GlobalContext.Provider value={values}>
