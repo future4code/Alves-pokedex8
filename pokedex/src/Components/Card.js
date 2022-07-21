@@ -19,6 +19,16 @@ align-items:center;
 `
 const BotaoPokedex = styled.button`
 border: 0px;
+border-radius: 8px;
+    width: 8%;
+    font-size: 25px;
+    font-weight: 700;
+    color: white;
+    background-color: #70C3FF;
+    padding: 12px 1px 12px 1px;
+    :hover{
+       color: #FAC705;
+    }
 `
 const ContainerCard = styled.div`
 width:100%;
@@ -179,7 +189,7 @@ function Card() {
         <MainContainer>
             <Header>
                 <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png" width={200} />
-                <BotaoPokedex onClick={goToPokedex}> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRDdGf-hzKxuQKMOBEkDzXIzHX07zD9eZPJhu7RH-GseJhmzNI6Yow080XZP5OfEWVybA&usqp=CAU" width={80} /></BotaoPokedex>
+                <BotaoPokedex onClick={goToPokedex}>Pokédex</BotaoPokedex>
             </Header>
             <Titulo>
                 <h1>

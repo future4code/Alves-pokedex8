@@ -1,6 +1,8 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useContext} from "react-router-dom"
 import React from "react"
 import styled from "styled-components"
+import GlobalContext from "./Global/GlobalContext"
+
 
 const Header = styled.header`
 height:10%;
@@ -17,6 +19,7 @@ const TextoHome = styled.h3`
 `
 
 function DetalhePokemon() {
+    const {pokemons} = useContext(GlobalContext)
     const navigate = useNavigate()
     const goToHome = () => {
         navigate("/")
@@ -24,7 +27,9 @@ function DetalhePokemon() {
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
-
+    const pokeDetails = pokemons && pokemons.map((pokemon)=>{
+        return 
+    })
 
     return (
         <div>
@@ -34,6 +39,7 @@ function DetalhePokemon() {
                 <BotaoPokedex onClick={goToHome}> <TextoHome>Excluir da Pokédex</TextoHome></BotaoPokedex>
             </Header>
             DETALHE Pokemon
+         
         </div>
     );
 }
