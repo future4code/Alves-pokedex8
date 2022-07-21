@@ -38,7 +38,7 @@ align-items:center;
 const BotaoPokedex = styled.button`
 border: 0px;
 border-radius: 8px;
-    width: 8%;
+    width: 20vh;
     font-size: 25px;
     font-weight: 700;
     color: white;
@@ -46,8 +46,13 @@ border-radius: 8px;
     padding: 12px 1px 12px 1px;
     :hover{
        color: #FAC705;
+    };
+    @media(min-width: 375px) and (max-width:765px){
+        width: 18vh;
     }
+  
 `
+
 const ContainerCard = styled.div`
 width:100%;
 display:flex;
