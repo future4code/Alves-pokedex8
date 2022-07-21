@@ -31,7 +31,7 @@ function DetalhePokemon() {
 
     const renderizarDetalhes = pokemonUnico && pokemonUnico.map((pokemon) => {
         const moves = []
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             moves.push(<p>{pokemon.moves[i].move.name}</p>)
         }
         return <div>
@@ -51,6 +51,7 @@ function DetalhePokemon() {
             <div>
                 {pokemon.stats.map((status) => {
                     return <div>
+                        <p>Base Stats</p>
                         <p>{status.stat.name.toUpperCase()}:{status.base_stat}</p>
                     </div>
                 })}

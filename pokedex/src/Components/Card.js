@@ -175,6 +175,7 @@ align-items:center;
 `
 const Input = styled.input`
 padding:10px;
+border-radius:10px;
 `
 
 function Card() {
@@ -182,9 +183,6 @@ function Card() {
     const [nomePokemon, setNomePokemon] = useState("")
     const goToPokedex = () => {
         navigate("/MyPokemons")
-    }
-    const goToDetails = () => {
-        navigate("/Details")
     }
     const { renderizarPokemon, pokemons, addPokemon, detailsPokemon, pokemonUnico } = useContext(GlobalContext)
     useEffect(() => {
@@ -213,30 +211,48 @@ function Card() {
             psychic: '#F67176',
             rock: '#C7B78B',
             steel: '#BBBBBB',
+        }
+        const backColor = {
+            poison: '#87516E',
+            grass: '#7CF07B',
+            fire: '#F97862',
+            flying: '#2EE5E6',
+            water: '#0050CD',
+            bug: '#307033',
+            normal: '#666666',
+            dark: '#203A61',
+            dragon: '#C2A636',
+            electric: '#FEF032',
+            fairy: '#FF54AF',
+            fighting: '#B57649',
+            ghost: '#743142',
+            ground: '#E99E23',
+            ice: '#BFF7FF',
+            psychic: '#BF2BF9',
+            rock: '#6F6459',
+            steel: '#76868E',
         }[type]
-        return <MainCard style={{ backgroundColor: `${color}` }}>
-        }
         const icon = {
-            poison:  poison ,
-            grass:  grass ,
-            fire:  fire ,
-            flying:  flying ,
-            water:  water ,
-            bug:  bug ,
-            normal:  normal ,
-            dark:  dark ,
-            dragon:  dragon ,
-            electric:  electric ,
-            fairy:  fairy ,
-            fighting: fighting ,
-            ghost: ghost ,
-            ground: ground ,
-            ice:  ice ,
-            psychic:  psychic ,
-            rock:  rock ,
-            steel:  steel ,
+            poison: poison,
+            grass: grass,
+            fire: fire,
+            flying: flying,
+            water: water,
+            bug: bug,
+            normal: normal,
+            dark: dark,
+            dragon: dragon,
+            electric: electric,
+            fairy: fairy,
+            fighting: fighting,
+            ghost: ghost,
+            ground: ground,
+            ice: ice,
+            psychic: psychic,
+            rock: rock,
+            steel: steel,
         }
-        return <MainCard style={{ backgroundColor: `${color[type]}` }}>
+        return <MainCard style={{ backgroundColor: `${backColor}` }}>
             <CardPokemon>
                 <ContainerMainInfo >
                     <ContainerInfo >
