@@ -35,6 +35,7 @@ justify-content:space-evenly;
 align-items:center;
 `
 const BotaoPokedex = styled.button`
+cursor: pointer;
 border: 0px;
 border-radius: 8px;
 width: 20vh;
@@ -144,6 +145,7 @@ font-weight:900;
 background:white;
 color:black;
 border-radius:20px;
+cursor: pointer
 `
 const BotaoDetalhes = styled(Link)`
 padding:3%;
@@ -153,6 +155,7 @@ font-size:1.2rem;
 color:white;
 background-color: ${props => props.color};
 text-decoration: underline;
+
 `
 const Titulo = styled.div`
 color:white;
