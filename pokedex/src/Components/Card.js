@@ -178,7 +178,13 @@ const Input = styled.input`
 padding:10px;
 border-radius:10px;
 `
-
+const ContainerLoading = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:1.5rem;
+`
 function Card() {
     const navigate = useNavigate()
     const [nomePokemon, setNomePokemon] = useState("")
@@ -313,7 +319,18 @@ function Card() {
                 />
             </InputCentralizado>
             <ContainerCard>
-                {RenderizarCard}
+                {pokemons.length > 1 ?
+                    RenderizarCard :
+                    <div>
+                        <div>
+                            <img src="https://c.tenor.com/tQVZsHnTSZgAAAAi/pikachu.gif" width={500} />
+                        </div>
+                        <ContainerLoading>
+                            Capturando os pokemons para você poder escolher
+                        </ContainerLoading>
+                    </div>
+                }
+
             </ContainerCard>
         </MainContainer>
     );

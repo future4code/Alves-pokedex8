@@ -25,7 +25,6 @@ import steel from "../img/steel.png"
 const Imagem = styled.img`
 width: 70%;
 `
-
 const CardImage1 = styled.div`
 width: 240px;
 height: 240px;
@@ -47,17 +46,17 @@ text-align: left;
 padding: 20px;
 width: 50vh;
 `
-
 const IdTitle = styled.p`
 padding: 0px;
 font-size: 1rem;
 `
-
 const TitleDetails = styled.h1`
 color:white;
-margin: 10px 30px;
+margin: 9px 30px;
+display:flex;
+align-items:center;
+justify-content:center;
 `
-
 const MoveTitle = styled.div`
 display: inline-block;
 background: #ECECEC;
@@ -66,7 +65,6 @@ border-radius: 12px;
 padding: 8px;
 margin: 20px 0px;
 `
-
 const CardBaseStatus = styled.div`
 background-color: white;
 border-radius: 8px;
@@ -74,18 +72,14 @@ text-align: left;
 padding: 20px;
 width: 60vh;
 `
-
 const StatsContainer = styled.div`
 margin: 20px;
 `
-
 const ContainerTypes = styled.div`
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-
 `
-
 const ContainerType = styled.div`
 display: flex;
 flex-direction: row;
@@ -97,13 +91,11 @@ margin: 10px 10px 10px 0px;
 border: 1px dashed rgba(255, 255, 255, 0.47);
 border-radius: 8px;
 `
-
 const IconImage = styled.img`
 width: 20px;
 height: 20px;
 padding-right: 10px;
 `
-
 const ContainerNameType = styled.div`
 display: flex;
 flex-direction: column;
@@ -112,28 +104,27 @@ padding: 5px 8px;
 width: 99px;
 margin: 10px 0px;
 `
-
 const ContainerNameTypeMoves = styled.div`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 `
-
-
 const CardName = styled.div`
 color: white;
 text-align: left;
-
+display:flex;
+`
+const ContainerImg = styled.div`
+padding-left:80%;
 `
 const CardPrincipal = styled.div`
 display: flex;
 background-color: ${props => props.backgroundColor};
-width: 100%
+width: 100%;
 height: 663px;
 justify-content: space-around;
 border-radius: 8px;
 padding: 20px;
-
 `
 const Container = styled.div`
 width: 95%;
@@ -141,7 +132,6 @@ margin: auto;
 text-align: center;
 align-items: center;
 `
-
 const Stats = styled.div`
 width: 100%;
 background-color: #ddd;
@@ -159,7 +149,7 @@ border-radius: 8px;
 `
 
 const MainPageContainer = styled.div`
-height: 100vh;
+height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -255,7 +245,7 @@ function DetalhePokemon() {
         }
         const moves = []
         for (let i = 0; i < 4; i++) {
-            moves.push(<MoveTitle><h4>{pokemon.moves[i].move.name}</h4></MoveTitle>)
+            moves.push(<MoveTitle><h4>{pokemon.moves[i].move.name.toUpperCase()}</h4></MoveTitle>)
         }
         return <Container>
             < CardPrincipal backgroundColor={backColor} >
@@ -279,8 +269,13 @@ function DetalhePokemon() {
                 <ContainerNameTypeMoves>
                     <ContainerNameType>
                         < CardName >
-                            <IdTitle>#{pokemon.id}</IdTitle>
-                            <h2>{pokemon.name.toUpperCase()}</h2>
+                            <div>
+                                <IdTitle>#{pokemon.id}</IdTitle>
+                                <h2>{pokemon.name.toUpperCase()}</h2>
+                            </div>
+                            <ContainerImg>
+                                <img src={pokemon.sprites.other["official-artwork"].front_default} width={100} />
+                            </ContainerImg>
                         </ CardName >
                         <ContainerTypes>
                             {pokemon.types.map((tipo) => {
