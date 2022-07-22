@@ -48,7 +48,7 @@ width: 50vh;
 `
 const IdTitle = styled.p`
 padding: 0px;
-font-size: 1rem;
+font-size: 2rem;
 `
 const TitleDetails = styled.h1`
 color:white;
@@ -251,8 +251,8 @@ function DetalhePokemon() {
             < CardPrincipal backgroundColor={backColor} >
                 <CardImages>
                     <CardImage1>
-                        <Imagem src={pokemon.sprites.other.home.front_default} />
-                    </CardImage1>
+                        <Imagem src={pokemon.sprites.other.home.front_default} />                     
+                    </CardImage1>                    
                     <CardImage1>
                         <Imagem src={pokemon.sprites.other.home.front_shiny} />
                     </CardImage1>
