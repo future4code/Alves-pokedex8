@@ -127,7 +127,7 @@ text-align: left;
 `
 const CardPrincipal = styled.div`
 display: flex;
-background-color: green;
+background-color: ${props => props.backgroundColor};
 width: 100%
 height: 663px;
 justify-content: space-around;
@@ -258,7 +258,7 @@ function DetalhePokemon() {
             moves.push(<MoveTitle><h4>{pokemon.moves[i].move.name}</h4></MoveTitle>)
         }
         return <Container>
-            < CardPrincipal >
+            < CardPrincipal backgroundColor={backColor} >
                 <CardImages>
                     <CardImage1>
                         <Imagem src={pokemon.sprites.other.home.front_default} />
