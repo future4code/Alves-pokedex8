@@ -52,11 +52,12 @@ border-radius: 8px;
     }
   
 `
-
 const ContainerCard = styled.div`
 width:100%;
 display:flex;
 flex-wrap:wrap;
+justify-content:center;
+align-items:center;
 @media (min-width : 320px) and (max-width : 480px) {
 background-color:#27282c;
 display:flex;
@@ -185,7 +186,10 @@ align-items:center;
 color:white;
 font-size:1.5rem;
 `
+const MainContainterLoading = styled.div`
+`
 function Card() {
+    const myTimeout = setTimeout(<img src="https://c.tenor.com/tQVZsHnTSZgAAAAi/pikachu.gif" />, 5000);
     const navigate = useNavigate()
     const [nomePokemon, setNomePokemon] = useState("")
     const goToPokedex = () => {
@@ -321,14 +325,14 @@ function Card() {
             <ContainerCard>
                 {pokemons.length > 1 ?
                     RenderizarCard :
-                    <div>
+                    <MainContainterLoading>
                         <div>
                             <img src="https://c.tenor.com/tQVZsHnTSZgAAAAi/pikachu.gif" width={500} />
                         </div>
                         <ContainerLoading>
                             Capturando os pokemons para você poder escolher
                         </ContainerLoading>
-                    </div>
+                    </MainContainterLoading>
                 }
 
             </ContainerCard>
