@@ -126,6 +126,15 @@ background:black;
 color:white;
 border-radius:20px;
 `
+const BotaoExcluir = styled.button`
+margin:1%;
+border:none;
+width:25%;
+font-weight:900;
+background:white;
+color:black;
+border-radius:20px;
+`
 function MeusPokemons() {
     const { capturar, excluirPokemon, detailsPokemon, pokemons, addPokemon } = useContext(GlobalContext)
 
@@ -225,7 +234,7 @@ function MeusPokemons() {
             </CardPokemon>
             <ContainerBotao>
                 <BotaoDetalhes to={"/Details"} onClick={() => detailsPokemon(pokemon.id)} >Detalhes</BotaoDetalhes>
-                <BotaoCapturar onClick={() => excluirPokemon(pokemon)}>Excluir</BotaoCapturar>
+                <BotaoExcluir onClick={() => excluirPokemon(pokemon)}>Excluir</BotaoExcluir>
             </ContainerBotao>
         </MainCard>
     })
