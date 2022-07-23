@@ -1,16 +1,22 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Bruno Adonai Rodrigues Monteiro
+- Guilherme Tocci
+- Pétrick Machado de Almeida Grillo
 
-Link do Surge: www.link.com.br
+Link do Surge: https://unruly-sofa.surge.sh
 
 O que funciona:
-- Item 1
-- Item 2
+- Home: o usuário recebe uma lista de pokemons vinda da API. E ele armazena os Pokemons capturados em sua Pokedex clicando em capturar
+- Pokedex: o usuário consegue ver os Pokemons que foram capturados em sua Pokedex.
+- O usuario consegue acessar a página de detalhes do Pokemon ao clicar no mesmo, estando tanto na Home quanto na Pokedex.
+- Campo "search" para buscar um pokemon especifico.
+- Responsividade.
 
-O que não funciona: 
-- Item 3
-- Item 4
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+- React Router
+- Styled-Components
+- Axios
+
