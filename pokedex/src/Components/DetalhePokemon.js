@@ -165,6 +165,7 @@ align-items:center;
 const BotaoPokedex = styled.button`
 border: none;
 background:white;
+cursor: pointer;
 `
 const TextoHome = styled.h3`
       text-decoration: underline;
@@ -179,9 +180,11 @@ function DetalhePokemon() {
     const goToPokedex = () => {
         navigate("/MyPokemons")
     }
-    const { pokemonUnico } = useContext(GlobalContext)
 
-    const renderizarDetalhes = pokemonUnico && pokemonUnico.map((pokemon) => {
+    const { pokemonUnico,excluirPokemon, arrayPokemonUnico } = useContext(GlobalContext)
+    
+    console.log(arrayPokemonUnico)
+    const renderizarDetalhes = arrayPokemonUnico && arrayPokemonUnico.map((pokemon) => {
         const type = pokemon.types[0].type.name
         const color = {
             poison: '#AD61AE',
@@ -300,7 +303,8 @@ function DetalhePokemon() {
             <Header>
                 <BotaoPokedex onClick={goToHome}> <TextoHome>Voltar Para a home</TextoHome></BotaoPokedex>
                 <BotaoPokedex onClick={goToPokedex}> <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8.png" width={200} /></BotaoPokedex>
-                <BotaoPokedex onClick={goToHome}> <TextoHome>Excluir da Pokédex</TextoHome></BotaoPokedex>
+                <BotaoPokedex onClick={()=>{excluirPokemon(pokemonUnico);goToPokedex()}}> <TextoHome>Excluir da Pokédex</TextoHome></BotaoPokedex>
+
             </Header>
             <TitleDetails>Detalhes</TitleDetails>
             <MainPageContainer>

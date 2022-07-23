@@ -7,6 +7,7 @@ const GlobalState = (props) => {
     const [pokemons, setPokemons] = useState([])
     const [usuarioPokemon, setDetailsPokemon] = useState("")
     const [pokemonUnico, setPokemonUnico] = useState("")
+    const [arrayPokemonUnico,setArrayPokemonUnico] = useState([]) 
 
 
     const renderizarPokemon = async () => {
@@ -41,7 +42,9 @@ const GlobalState = (props) => {
     const detailsPokemon = (id) => {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             .then((resposta) => {
-                setPokemonUnico([resposta.data])
+                setPokemonUnico(resposta.data)
+                setArrayPokemonUnico([resposta.data])
+                console.log(resposta)
             })
     }
     const excluirPokemon = (pokemon) => {
@@ -63,6 +66,7 @@ const GlobalState = (props) => {
         detailsPokemon,
         pokemonUnico,
         setPokemonUnico,
+        arrayPokemonUnico,
     }
     return (
         <GlobalContext.Provider value={values}>

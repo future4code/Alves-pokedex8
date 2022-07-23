@@ -36,6 +36,7 @@ justify-content:space-evenly;
 align-items:center;
 `
 const BotaoPokedex = styled.button`
+cursor: pointer;
 border: 0px;
 border-radius: 8px;
     width: 20vh;
@@ -142,6 +143,7 @@ display:flex;
 justify-content:space-between;
 `
 const BotaoCapturar = styled.button`
+cursor: pointer;
 margin:1%;
 border:none;
 width:25%;
