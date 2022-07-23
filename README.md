@@ -21,12 +21,10 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Styled-Components
 - Axios
 
-Imagens:<img width="1280" alt="Screen Shot 2022-07-23 at 9 51 04 PM" src="https://user-images.githubusercontent.com/104601906/180623203-e03386d2-f806-46ae-811e-5fc6717829c5.png">
+Imagens:
 
-<img width="1275" alt="Screen Shot 2022-07-23 at 11 18 59 PM" src="https://user-images.githubusercontent.com/104601906/180623197-a2996d13-8b0f-4a1c-80af-8fb673d04c16.png">
+<img width="1275" alt="Screen Shot 2022-07-23 at 11 18 59 PM" src="https://user-images.githubusercontent.com/104601906/180623396-e5e154e0-7cc4-4deb-80ef-de23b42a70dc.png">
 
-<img width="1246" alt="Screen Shot 2022-07-23 at 11 19 24 PM" src="https://user-images.githubusercontent.com/104601906/180623202-79ec0957-5da8-48e5-8fd9-6f6fb0dfb9f3.png">
+<img width="1246" alt="Screen Shot 2022-07-23 at 11 19 24 PM" src="https://user-images.githubusercontent.com/104601906/180623388-9a367c54-4d76-46fa-8481-9d07e8c6a6a9.png">
 
-
-
-
+<img width="1273" alt="Screen Shot 2022-07-23 at 11 18 25 PM" src="https://user-images.githubusercontent.com/104601906/180623392-770e6b54-c210-4719-aace-86ffe1fef84d.png">
