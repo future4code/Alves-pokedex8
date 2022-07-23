@@ -31,11 +31,27 @@ height: 240px;
 background-color: #FFFFFF;
 border: 2px solid #FFFFFF;
 border-radius: 8px;
+@media (max-width : 480px) {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10%;
+
+}
+@media (min-width : 481px) and (max-width : 1250px) {
+    width: 75%;
+    height: 75%;
+    margin: auto;
+    margin-bottom: 10%;
+
+}
 `
+
 const CardImages = styled.div`
 display: flex;
 justify-content: space-between;
 flex-direction: column;
+
+
 `
 const CardMoves = styled.div`
 display: flex;
@@ -45,11 +61,29 @@ border-radius: 8px;
 text-align: left;
 padding: 20px;
 width: 50vh;
+@media (max-width : 480px) {
+    width: 80%;
+    height: 80%;
+    margin-bottom: 10%;
+    padding: 10%;
+
+}
+@media (min-width : 481px) and (max-width : 1250px) {
+    width: 75%;
+    height: 75%;
+    margin: auto;
+    margin-bottom: 10%;
+
+}
 `
 const IdTitle = styled.p`
 padding: 0px;
 font-size: 2rem;
 `
+const CardTitle = styled.h3`
+padding: 15px 0px 0px 15px;
+`
+
 const TitleDetails = styled.h1`
 color:white;
 margin: 9px 30px;
@@ -71,6 +105,19 @@ border-radius: 8px;
 text-align: left;
 padding: 20px;
 width: 60vh;
+@media (max-width : 480px) {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10%;
+
+}
+@media (min-width : 481px) and (max-width : 1250px) {
+    width: 75%;
+    height: 75%;
+    margin: auto;
+    margin-bottom: 10%;
+
+}
 `
 const StatsContainer = styled.div`
 margin: 20px;
@@ -103,6 +150,19 @@ align-items: flex-start;
 padding: 5px 8px;
 width: 99px;
 margin: 10px 0px;
+@media (max-width : 480px) {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10%;
+
+}
+@media (min-width : 481px) and (max-width : 1024px) {
+    width: 75%;
+    height: 75%;
+    margin: auto;
+    margin-bottom: 10%;
+
+}
 `
 const ContainerNameTypeMoves = styled.div`
 display: flex;
@@ -115,16 +175,24 @@ text-align: left;
 display:flex;
 `
 const ContainerImg = styled.div`
-padding-left:80%;
+margin-left: 15%;
 `
 const CardPrincipal = styled.div`
 display: flex;
 background-color: ${props => props.backgroundColor};
-width: 100%;
 height: 663px;
 justify-content: space-around;
 border-radius: 8px;
 padding: 20px;
+@media (max-width : 480px) {
+    flex-direction: column;
+    height: 100%
+
+}
+@media (min-width : 481px) and (max-width : 1250px) {
+    flex-direction: column;
+    height: 100%
+}
 `
 const Container = styled.div`
 width: 95%;
@@ -261,7 +329,7 @@ function DetalhePokemon() {
                     </CardImage1>
                 </CardImages>
                 <CardBaseStatus>
-                    <h3>Base Stats</h3>
+                    <CardTitle>Base Stats</CardTitle>
                     {pokemon.stats.map((status) => {
                         return <StatsContainer>
                             <p>{status.stat.name.toUpperCase()}: {status.base_stat}</p>
