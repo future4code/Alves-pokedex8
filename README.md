@@ -5,7 +5,7 @@ Nome dos integrantes:
 - Guilherme Tocci
 - Pétrick Machado de Almeida Grillo
 
-Link do Surge: https://unruly-sofa.surge.sh
+Link do Surge: outstanding-memory.surge.sh
 
 O que funciona:
 - Home: o usuário recebe uma lista de pokemons vinda da API. E ele armazena os Pokemons capturados em sua Pokedex clicando em capturar
